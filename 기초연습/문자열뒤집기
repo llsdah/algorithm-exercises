@@ -1,0 +1,24 @@
+public class 문자열뒤집기 {
+
+	public static void main(String[] args) {
+		
+		String n ="ADEFH";
+		System.out.println(n);
+		
+		char[] test = n.toCharArray();
+		char temp ='a';
+		for( int i =0; i< n.length()/2;i++) {
+			temp = test[i];
+			test[i] =test[n.length()-1-i];
+			test[n.length()-1-i] = temp;
+			
+			
+		}
+		
+		
+		n = new String(test);
+		
+		System.out.println(n);
+	}
+	
+}
