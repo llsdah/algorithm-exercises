@@ -1,6 +1,54 @@
 import java.util.*;
 
 class Solution {
+    public String solution(String number, int k) {
+        String answer = "";
+        Stack<Integer> st = new Stack<>();
+        int cnt =0;
+        loof : for(int i=0; i<number.length();i++){
+            int num = number.charAt(i)-'0';
+            if(st.isEmpty()){
+                st.push(num);
+                continue;
+            }
+    
+            if(st.peek()>=num){
+                st.push(num);
+            }else{
+                while(st.peek()<num){
+                    st.pop();
+                    cnt++;
+                    if(cnt==k){
+                        answer = number.substring(i);
+                        break loof;         
+                    }    
+                    if(st.isEmpty()){
+                        break;
+                    }
+                }
+                st.push(num);
+            }
+            if(cnt==k){
+                break;
+            }
+        }
+        
+       // System.out.println(st.size()+"  "+cnt);
+        while(!st.isEmpty()){
+            answer = st.pop()+answer;
+            //sb.append(st.pop());
+        }
+        
+        
+        if( answer.length() >number.length()-k){
+            answer = answer.substring(0,number.length()-k);
+        }
+        return answer;
+    }
+}
+
+/* 과거 형 
+class Solution {
     String ans ="";
     int cnt = 0;
     public String solution(String number, int k) {
@@ -49,3 +97,4 @@ class Solution {
         return result;
     }
 }
+*/
