@@ -13,7 +13,6 @@
 			sum += (int) Arrays.stream(arr).filter( i -> i ==0 ).count();
 			count++;
 			arr = Arrays.stream(arr).filter( i -> i !=0 ).toArray();
-			
 			arr = binary(arr);
 			
 		}
@@ -47,3 +46,46 @@
 		
 		return temp;
 	}
+}
+
+/* 수정본
+import java.util.*;
+class Solution {
+    int zero =0;
+    public int[] solution(String s) {
+        int[] answer = new int[2];
+        String str = new String(s);
+        
+        while(!str.equals("1")){    
+            str = zero(str);
+            str = leng(str.length());
+            answer[0]++;
+        }
+        answer[1]=zero;
+        return answer;
+    }
+    public String leng(int num){
+        StringBuilder sb = new StringBuilder();
+        while(num>0){
+            sb.append(num%2);
+            num = num/2;
+        }
+        String str = sb.reverse().toString();
+        return str;
+    }
+    
+    public String zero(String str){
+        for(int i = 0; i<str.length();i++){
+            if(str.charAt(i)=='0'){
+                zero++;
+            }
+        }
+        str = str.replace("0","");
+        return str;
+        
+    }
+}
+
+*/
+
+
