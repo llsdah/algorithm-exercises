@@ -1,3 +1,38 @@
+
+// 인덱스 활용한 답.. 훌륭하네..
+public class Main {
+
+	public static void main(String[] args) {
+
+		Scanner scan = new Scanner(new InputStreamReader(System.in));
+
+		int n = scan.nextInt();
+
+		for (int i = 0; i < n; i++) {
+			int per = scan.nextInt();
+			int[] arr = new int[per+1]; // 1부터 시작
+
+			for (int k = 0; k < per; k++) {
+				arr[scan.nextInt()]=scan.nextInt();
+			}
+			int cnt =1; // 1등은 무조건
+			int sec  = arr[1];
+			for(int k=2;k<=per;k++) {
+				if(sec >=arr[k]) {
+					sec = arr[k];
+					cnt++;
+				}
+			}
+			
+			System.out.println(cnt);
+		}
+
+	}
+
+}
+
+
+/* 2번 답 조금 줄인것 
 public class Main {
 
 	public static void main(String[] args) {
@@ -35,12 +70,12 @@ public class Main {
 }
 
 
+*/
 
 
 
 
-
-/*
+/* 1번답
 
 public class Main {
 	static int cnt ;
