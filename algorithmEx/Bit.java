@@ -18,8 +18,10 @@ public class Bit {
 	// 비트 활용해서 두수의 합 구하기 
 	private static void count(int[] nums, int length) {
 		int cnt =0;
+		
 		for(int i =0; i <(1<<length);i++) {
 			int sum =0;
+			if(Integer.bitCount(i)!=2)continue;
 			for(int k =0;k<length;k++) {
 				if( (i& 1<<k)!=0) {
 					sum+=nums[k];
