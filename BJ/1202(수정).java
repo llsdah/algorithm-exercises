@@ -1,3 +1,81 @@
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.PriorityQueue;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		Scanner scan = new Scanner(new InputStreamReader(System.in));
+
+		int N = scan.nextInt(); // 보석 수
+		int K = scan.nextInt(); // 가방 수
+		int[] bag = new int[K];// 가방의 최대 무게;
+
+		Gam[] gam = new Gam[N];
+		for (int i = 0; i < N; i++) {
+			int wei = scan.nextInt(); // 무게
+			int val = scan.nextInt(); // 가격
+			gam[i] = new Gam(wei,val);
+		}
+
+		
+		// 우선 무게대로 정렬 합니다. 
+		Arrays.sort(gam, new Comparator<Gam>() {
+
+			@Override
+			public int compare(Gam o1, Gam o2) {
+				if( o1.weight == o2.weight) {
+					return o2.value - o1.value;
+				}
+				
+				return o1.weight -o2.weight;
+			}
+			
+		});
+		
+		
+		for (int i = 0; i < K; i++) {
+			bag[i] = scan.nextInt(); // 가방 최대 무게
+		}
+		
+		Arrays.sort(bag);
+		// 최대 1개의 보석만 넣을 수 있다.
+		// 오름 차순 정렬
+		PriorityQueue<Integer> pq = new PriorityQueue<>(Comparator.reverseOrder());
+		long answer =0;
+		
+		int pos =0;
+		for(int i=0;i<K;i++) {
+			// 지금 가방의무게보다 작거나 같은 보석을 보두 우선순위에 넣는다. 
+			while( pos<N&& gam[pos].weight<=bag[i]) {
+				pq.offer(gam[pos].value);
+				pos++;
+			}
+			System.out.println(" size "+pq.size());
+			// 한깨씩 뽑음 결국 가방 갯수 만큼만 뽑으면 댐. 
+			if(!pq.isEmpty()) {
+				answer+= pq.poll();
+			}
+		}
+		
+		
+		
+		System.out.println(answer);
+	}
+}
+
+class Gam{
+	int weight;
+	int value;
+	
+	Gam(int weight, int value){
+		this.weight =weight;
+		this.value =value;
+	}
+}
 
 
 
