@@ -1,3 +1,75 @@
+public class Belady {
+
+	static int N;// 콘센트
+	static int K; // 꽂을꺼
+	static int[] seq; // 순서 담기
+	static List<Integer> inUse = new ArrayList<>(); // 현재 사용중인거
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(new InputStreamReader(System.in));
+
+		N = sc.nextInt(); // 콘센트 수
+		K = sc.nextInt(); // 꽂을 거 수
+		seq = new int[K]; // 순서
+		for (int i = 0; i < K; i++) {
+			seq[i] = sc.nextInt();
+		}
+
+		int ans = optimal();
+		System.out.println(ans);
+	}
+
+	private static int optimal() {
+		int cnt = 0; // 교체 수
+		for (int i = 0; i < K; i++) {
+			int cur = seq[i];
+			if (inUse.contains(cur))
+				continue; // 포함하고 있으면 넘어가
+			if (inUse.size() == N) { // 콘센트에 꽉찼다면
+				int pos = -1;// 변경할 꺼 위치 indext
+				List<Integer> list = new ArrayList<>();
+				for (int k = i + 1; k < K; k++) { // i번쨰꺼는 넣어야되기에
+					// 다음꺼부터 기존에 있는 것들 중(사용하고 있는 것) 가장 나중에 사용하는거 찾기
+					int next = seq[k];
+					if (list.size() == N)
+						break; // 찾았다.
+					if (!inUse.contains(next))
+						continue; // 포함하고 있지 않으면 넣어야되는거 다음 패스
+					if (!list.contains(next))
+						list.add(next);
+					// 사용하고 있는데, 여기 리스트도 없으면 넣기
+				}
+				if (list.size() == N) { // 꽉차서 돌아온거면
+					int last = list.get(list.size() - 1);// 가장 마지막에 사용된거 뽑아서 제거
+					pos = inUse.indexOf(last);
+				} else { // 꽉 안차면 사용 안하는게 있다는 의미이므로 그거 찾기
+					for (int h = 0; h < N; h++) {
+						if (list.contains(inUse.get(h)))
+							continue; // 사용중 넘어가기
+						pos = h;
+						break;
+					}
+				}
+				inUse.remove(pos);// 뺴기
+				cnt++;// 뻇으니까 1개 증가
+			}
+			inUse.add(cur);
+		}
+
+		return cnt;
+	}
+}
+
+/*
+ 2 10 
+ 2 3 2 3 1 3 7 2 5 2
+ 
+ */
+
+
+
+/*
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -78,3 +150,4 @@ public class Main {
 		return pos;
 	}
 }
+*/
