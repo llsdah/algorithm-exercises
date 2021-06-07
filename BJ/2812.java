@@ -113,3 +113,50 @@ public class Main {
 	}
 }
 */
+
+
+/* 시간을 초과한 방법.. 왜지?
+
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.PriorityQueue;
+import java.util.Comparator;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(new InputStreamReader(System.in));
+		
+		int n = sc.nextInt(); // 자리 수 
+		int m = sc.nextInt(); // 지우기 
+		String num  =sc.next();
+		
+		char[] arr = num.toCharArray();
+		int st = n-m; // 만들어야되는 자릿 수 
+		// 만들어야되는 자리수 n-m;
+		int now=0; // 현위치
+		int pos = 0;// 삭제 검색 시작위치 
+		StringBuilder sb = new StringBuilder();
+		for(int i =0; i<st;i++) { // 만들어야되는 자리수 입니다. 
+			int max =0; // 값 체크용
+			for(int k =now ;k<=i+m;k++) { //삭제 범위 최대값 찾아야디 
+				int temp =arr[k]-'0';
+				if(max < temp) {
+					pos =k;
+					max = temp;
+				}
+			}
+			sb.append(max);
+			now= pos+1; // 위치변경 
+			
+		}
+		
+		String ans = sb.toString();
+		System.out.println(ans);
+	}
+}
+
+
+*/
