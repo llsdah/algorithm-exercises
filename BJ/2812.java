@@ -53,5 +53,63 @@ public class Main {
 	}
 }
 
+/* 메모리 초과 방법... 슬프담. deque 라는 것 한개 
 
+import java.io.InputStreamReader;
+import java.util.Scanner;
+import java.util.Stack;
 
+public class Main {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(new InputStreamReader(System.in));
+		
+		int n = sc.nextInt(); // 자리 수 
+		int k = sc.nextInt(); // 지우기 
+		String number  =sc.next();
+		
+		char[] arr =number.toCharArray();
+		Stack<Integer> st =new Stack<>();
+		int cnt =0;// 삭제 갯수 카운트
+		String ans ="";
+		
+		loof : for(int i=0; i<n;i++) {// 계속 돌면서 체크
+			int num = arr[i]-'0';
+			if(st.isEmpty()) {
+				st.push(num);
+				continue;
+			}
+			
+			if( st.peek()>=num) {
+				st.push(num);
+			}else {
+				while(st.peek()<num) {
+					st.pop();
+					cnt++;
+					if(cnt == k ) {
+						ans = number.substring(i);
+						break loof;
+					}
+					
+					if(st.isEmpty()) break; // 비었으면 그만 
+				}
+				st.push(num); //추가
+			}
+			
+			if(cnt==k) break; // 삭제 갯수가 맞다면
+		
+		}
+		
+		while(!st.isEmpty()) { // 하나씩 추가 
+			ans = st.pop()+ans;
+		}
+		
+		if( ans.length()> n-k) { // 더 길다면 
+			ans = ans.substring(0,n-k);
+		}
+		System.out.println(ans);
+
+	}
+}
+*/
