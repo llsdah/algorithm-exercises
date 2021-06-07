@@ -77,3 +77,145 @@ class Solution {
         pos++;
     }
 }
+
+/* 내꺼 수정 ... 이건 안된다 왜지??.. 아랫 꺼라 비슷한데 아랫꺼는 되고,.
+import java.util.*;
+class Solution {
+    static String[] d;
+    static HashMap<Character,Integer> map =new HashMap<>();;
+    static boolean[] visit =new boolean[8];
+    static int[] num = new int[8];
+    static int ans =0;
+    public int solution(int n, String[] data) {
+        int answer = 0;
+        d =data;
+        map.put('A',0);
+        map.put('C',1);
+        map.put('F',2);
+        map.put('J',3);
+        map.put('M',4);
+        map.put('N',5);
+        map.put('R',6);
+        map.put('T',7);
+        dfs(0);
+        
+        answer = ans;
+        return answer;
+    }
+    public static void dfs(int index){
+        if( index==8){
+            if(check()) ans++;
+        } else {
+            for (int i =0; i<8;i++){
+                if(!visit[i]){
+                    visit[i]= true;
+                    num[index] =i;
+                    dfs(index+1);
+                    visit[i]= false;
+                }
+            }
+        }
+    }// dfs
+    
+    public static boolean check(){
+        int a=0;
+        int b=0;
+        int re=0;
+        char oper =' ';
+        for( String s : d){
+            a =num[map.get(s.charAt(0))];
+            b = num[map.get(s.charAt(2))];
+            oper =s.charAt(3);
+            re = s.charAt(4)-'0'+1;
+            
+            int temp = Math.abs(a-b);
+            if(oper =='='){
+                if(temp!=re){
+                    return false;
+                }
+            }else if(oper=='>'){
+                if(temp<=re){
+                    return false;
+                }
+            }else {
+                if(temp>=re){
+                    return false;
+                }
+            }
+        }
+        return true;
+        
+    }
+    
+}
+
+
+
+*/
+
+/*
+import java.util.*;
+
+class Solution {
+    static String[] d;
+    static HashMap<Character,Integer> map ;
+    static boolean[] visited;
+    static int[] ch;
+    static int answer;
+    
+    public int solution(int n, String[] data) {
+        d = data;
+        map = new HashMap<>();
+        visited = new boolean[8];
+        ch = new int[8];
+        answer = 0;
+        map.put('A',0);
+        map.put('C',1);
+        map.put('F',2);
+        map.put('J',3);
+        map.put('M',4);
+        map.put('N',5);
+        map.put('R',6);
+        map.put('T',7);
+        dfs(0);
+        return answer;
+    }
+    
+    public static void dfs(int idx){
+        if(idx == 8){
+            if(check()) answer++;
+        }
+        else{
+            for(int i=0;i<8;i++){
+                if(!visited[i]){
+                    visited[i] = true;
+                    ch[idx] = i;
+                    dfs(idx + 1);
+                    visited[i] = false;
+                }
+            }
+        }
+    }
+    
+    
+    
+
+    
+    public static boolean check(){
+        int a,b,res;
+        char op;
+        for(String s : d){
+            a = ch[map.get(s.charAt(0))];
+            b = ch[map.get(s.charAt(2))];
+            op = s.charAt(3);
+            res = s.charAt(4)-'0' + 1;
+            
+            if(op == '='){ if(Math.abs(a-b)!=res) return false;}
+            else if(op == '>'){ if(Math.abs(a-b) <= res) return false;}
+            else {if(Math.abs(a-b) >= res) return false;}
+        }
+        return true;
+    }
+}
+
+*/
