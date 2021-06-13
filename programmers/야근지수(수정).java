@@ -2,6 +2,30 @@ import java.util.*;
 class Solution {
     public long solution(int n, int[] works) {
         long answer = 0;
+        PriorityQueue<Integer> que = new PriorityQueue<>(Collections.reverseOrder());
+        
+        for(int i=0; i<works.length;i++){
+            que.add(works[i]);
+        }
+        for(int i=n;i>0;i--){
+            int num = que.poll();
+            if(num==0) break;
+            que.add(num-1);
+        }
+        int temp = que.size();
+        for(int i =0; i < temp;i++){
+            int num = que.poll();
+            answer+=(num*num);       
+        }
+        
+        return answer;
+    }
+}
+/* 수정 전 2
+import java.util.*;
+class Solution {
+    public long solution(int n, int[] works) {
+        long answer = 0;
         int sum =0;
         for(int i=0; i<works.length;i++){
             sum+=works[i];
@@ -20,7 +44,7 @@ class Solution {
         return answer;
     }
 }
-
+*/
 /* 수정 전 1
 import java.util.*;
 class Solution {
