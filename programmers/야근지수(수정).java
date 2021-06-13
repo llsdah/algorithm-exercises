@@ -2,6 +2,30 @@ import java.util.*;
 class Solution {
     public long solution(int n, int[] works) {
         long answer = 0;
+        int sum =0;
+        for(int i=0; i<works.length;i++){
+            sum+=works[i];
+        }
+        if(n>=sum) return 0;
+        while(n>0){
+            Arrays.sort(works);
+            works[works.length-1]--;
+            n--;
+        }
+         
+        for(int i =0; i<works.length;i++){
+            if(works[i]<=0) continue;
+            answer+=(works[i]*works[i]);       
+        }
+        return answer;
+    }
+}
+
+/* 수정 전 1
+import java.util.*;
+class Solution {
+    public long solution(int n, int[] works) {
+        long answer = 0;
         while(n>=works.length){
             for(int i =0; i<works.length;i++){
                 if(works[i]<=0) continue;
@@ -29,3 +53,4 @@ class Solution {
         return answer;
     }
 }
+*/
