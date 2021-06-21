@@ -1,4 +1,52 @@
-
+import java.util.*;
+class Solution {
+    boolean[] visit;
+    int ans = (int)1e9;
+    public int solution(String begin, String target, String[] words) {
+        boolean flag = false;
+        for(int i=0; i<words.length;i++){
+            if(target.equals(words[i])){
+                flag = true;
+                break;
+            }
+        }
+        if(!flag) return 0;
+        
+        visit = new boolean[words.length];
+        dfs(begin, target, 0, words);
+        
+        return ans;
+    }
+    public void dfs(String st, String ta, int count, String[] word){
+        if(st.equals(ta)) {
+            ans = Math.min(count,ans);
+            return;
+        }
+        
+        for(int i=0; i<word.length;i++){
+            if(!visit[i]&&check(st,word[i])){
+                visit[i] =true;
+                dfs(word[i],ta,count+1,word);
+                visit[i] =false;
+            }
+        }
+        
+    }
+    
+    public boolean check(String now , String change){
+        int count =0;// 구별되는 것이 1개 여야합니다.
+        for(int i=0; i <now.length();i++){
+            if(now.charAt(i)!= change.charAt(i)){
+                count++;
+            }
+        }
+        
+        return count ==1 ? true : false;
+        
+    }
+    
+    
+}
 
 /* 기본 풀이 
 import java.util.*;
