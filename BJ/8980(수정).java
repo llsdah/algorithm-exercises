@@ -1,3 +1,79 @@
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class Main {
+
+	
+	static int[] now;
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(new InputStreamReader(System.in));
+		
+		int last_city = sc.nextInt(); // 마지막 시티 .
+		int cargo = sc.nextInt(); // 최대 값
+		
+		int n = sc.nextInt();
+
+		ArrayList<City> city = new ArrayList<>();
+		for(int i =0; i<n;i++) {
+			int st = sc.nextInt();
+			int end = sc.nextInt();
+			int cnt = sc.nextInt();
+			city.add(new City(st,end,cnt));
+			
+		}
+		int[] box = new int[last_city+1]; // 해당 마들 별로 얼마나 실고 있는지. 
+		Collections.sort(city); // 받은 마을 오름차순 정렬 합니다. 
+		int total = 0;
+		for(City ct : city) {
+			int st = ct.st;
+			int end = ct.end;
+			int cnt = ct.cnt;
+			
+			int max = 0; 
+			boolean flag = true; // 실을 수 있는지 없는지. 
+			for(int i= st; i<end;i++) {
+				if(box[i]>=cargo) {
+					flag = false;
+					break;
+				}
+				max = Math.max(max,box[i]);// 현상황에서의 실은 최대 값. 
+			}
+			if(flag) { // 실을수 있다면
+				int load = cargo - max; // 얼마나 가능한가. 
+				if( load > cnt) load = cnt;
+				total +=load;
+				for(int i =st; i<end;i++) {
+					box[i]+=load;
+				}
+				
+			}
+			
+		}
+		System.out.println(total);
+		
+	}
+}
+
+class City implements Comparable<City>{
+	int st;
+	int end;
+	int cnt;
+	City(int st, int end , int cnt ){
+		this.st = st;
+		this.end = end;
+		this.cnt = cnt;
+	}
+	public int compareTo(City city) { // 정렬의 기준이 되는것. 
+		if(this.end<city.end) return -1;
+		else if ( this.end == city.end) return 0;
+		else return 1;
+		
+	}
+	
+}
 /* 두번쨰.. 흠.. 
 import java.io.InputStreamReader;
 import java.util.Arrays;
