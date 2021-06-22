@@ -1,3 +1,28 @@
+import java.util.*; // 시간 초과 
+class Solution {
+    	public String[] solution(String[][] tickets) {
+		Arrays.sort(tickets, (o1,o2)-> o1[1].compareTo(o2[1]));
+		int[] check = new int[tickets.length];// 0 이면 방문 안한거 1이면 방문 한것 . 
+		int num = 0;
+		String str = "ICN";
+		StringBuilder sb = new StringBuilder(str);
+		while(num != check.length ) {
+			
+			for(int i =0; i <tickets.length;i++) {
+				if(check[i]==0&&tickets[i][0].equals(str)) {
+					sb.append(","+tickets[i][1]);
+					str = tickets[i][1];
+					check[i]=1;
+					break;
+				}
+			}
+			num = (int)Arrays.stream(check).filter(k -> k ==1).count();	
+		}
+		String[] answer = sb.toString().split(",");
+		
+		return answer;
+	}
+}
 
 /* 답 1
 import java.text.ParseException;
