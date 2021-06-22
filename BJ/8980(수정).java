@@ -1,5 +1,99 @@
-package backJun;
+/* 두번쨰.. 흠.. 
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Scanner;
 
+public class Main {
+
+	
+	static int[] now;
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(new InputStreamReader(System.in));
+		
+		int city = sc.nextInt(); // 마지막 시티 .
+		int cargo = sc.nextInt(); // 최대 값
+		
+		int n = sc.nextInt();
+		int[][] arr = new int[n][3];
+		
+		for(int i =0; i<n;i++) {
+			arr[i][0] =sc.nextInt();
+			arr[i][1] =sc.nextInt();
+			arr[i][2] =sc.nextInt();
+		}
+		
+		int total =0; // 운반 수 
+		now = new int[city+1];
+		
+		
+		// 정렬하기 마을 순서, 마을 순서 오름 차준 
+		Arrays.sort(arr,new Comparator<int[]>() {
+
+			@Override
+			public int compare(int[] o1, int[] o2) {
+				if(o1[1]==o2[1]) return o2[0]-o1[0];
+				
+				return o1[1]-o2[1];
+			}
+			
+		});
+		
+		System.out.println();
+		for(int i =0; i<n;i++) {
+			System.out.println(Arrays.toString(arr[i]));
+		}
+		System.out.println();
+		
+
+		// now 에 총 갯수 보다 많은지. 많으면 그냥 가 .. 
+		//
+		for(int i =0; i < n;i++) {
+			if(check(cargo)) continue;
+			total += insert(arr,i,cargo);
+			
+		}
+		System.out.println(total);
+		
+	}
+	private static int insert(int[][] arr, int pos, int cargo) {
+		int num = cargo -now[arr[pos][0] ]; // 이번에 실을 수 있는량 
+		
+		for(int i =arr[pos][0]; i <now.length;i++) {
+			if(now[arr[i][0] ]==0) break;
+			num = Math.min(num,cargo -now[arr[i][0] ]); 
+		}
+		num = Math.min(num, arr[pos][2]); //실은수 있는 것과, 진짜 실은 양중 작은거   
+		now[arr[pos][0]]+=num; // 자기 자신은 일단 시록 
+		
+		
+		for(int i =arr[pos][0]+1; i <now.length;i++) {
+			if(now[i]==0) break;
+			now[i]+=num;
+		}
+		
+		System.out.println("pos : "+ pos + " 배열수 : "+ Arrays.toString(now));
+		return num; //이만큼 실음. 
+	}
+	
+	// 총 갯수 보다 많은게 있다면 체크 
+	private static boolean check(int cargo) {
+		boolean flag = false;
+		for(int i=0; i<now.length;i++) {
+			if(now[i]>=cargo) {
+				flag=true;
+				break;
+			}
+		}
+		
+		return flag;
+	}
+}
+
+*/
+/* 처음 푸넉 
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -75,11 +169,5 @@ public class Main {
 		
 	}
 }
-
-
-
-
-/*
-
 
 */
