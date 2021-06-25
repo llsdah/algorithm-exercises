@@ -1,4 +1,71 @@
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Scanner;
 
+public class Main {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(new InputStreamReader(System.in));
+
+		int n = sc.nextInt();
+		String[] str_arr = new String[n];
+		int[] int_arr = new int[n];
+
+		for (int i = 0; i < n; i++) {
+			str_arr[i] = sc.next();
+		}
+
+		for (int i = 0; i < n; i++) {
+			char[] arr = str_arr[i].toCharArray();
+			int_arr[i] = check(arr);
+		}
+
+		
+		System.out.println(Arrays.toString(int_arr));
+	}
+
+	private static int check(char[] str) {
+
+		int left = 0;
+		int right = str.length-1;
+		if (palin(str,left,right))
+			return 0;
+		else if (mi_palin(str,left,right))
+			return 1;
+		return 2;
+	}
+
+	private static boolean mi_palin(char[] arr, int left, int right) {
+		while(left<=right) {
+			if(arr[left]!=arr[right]) {
+				boolean a = palin(arr,left+1,right);
+				boolean b = palin(arr,left,right-1);
+				if(!a&&!b) return false;
+				else return true;
+			}
+			left++;
+			right--;
+		}
+		return true;
+	}
+
+	private static boolean palin(char[] arr, int left, int right) {
+
+		while(left<=right) {
+			if(arr[left]!=arr[right]) return false;
+			left++;
+			right--;
+		}
+		
+		return true;
+	}
+
+}
+
+/* 시간 초과 숫자로 바꿩서 하자..
 public class Main {
 
 	public static void main(String[] args) {
@@ -62,7 +129,6 @@ public class Main {
 	}
 }
 
-/*
 
 
 */
