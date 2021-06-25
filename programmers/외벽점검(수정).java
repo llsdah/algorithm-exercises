@@ -33,11 +33,7 @@ class Solution {
 	}
 	
 	public static long solution(int n, int[] weak, int[] dist) {
-    	// 외벽길이, 취약 지점으로 부터 거리 배열, 각 친구가 이동 할 수 있는 거리 
-        // 원형 n미터 외벽, 주기적 1시간의 검사 , 친구가 1시간동안 이동거리가 다르다. 
-        // 최소한의 친구 투입으ㅗ 내부 곰사 돕는다. 
-        // 정북이 0, 시계방향으로의 거리, 친구는 앞뒤로 다 이동이 가능,   
-    	// 친구 는 총 8명. 
+    	
     	long answer = 0;
         // 친구는 모조건 취약점에서 시작, 아작 가장 멀리 이동하는 것 자.
     	// 원형!반시계와 시계방향 체크 안해도됨 
@@ -57,4 +53,63 @@ class Solution {
     	answer = Cnt;
         return answer;
     }
+
+
+/* 내가 푼것. 어디가 틀릴까 훔... 
+import java.util.*;
+class Solution {
+    
+	static int min =(int)1e9;
+	public static long solution(int n, int[] weak, int[] dist) {
+    	// 외벽길이, 취약 지점으로 부터 거리 배열, 각 친구가 이동 할 수 있는 거리 
+        // 원형 n미터 외벽, 주기적 1시간의 검사 , 친구가 1시간동안 이동거리가 다르다. 
+        // 최소한의 친구 투입으ㅗ 내부 곰사 돕는다. 
+        // 정북이 0, 시계방향으로의 거리, 친구는 앞뒤로 다 이동이 가능,   
+    	// 친구 는 총 8명. 
+    	long answer = 0;
+    	
+    	Arrays.sort(dist);
+    	Arrays.sort(weak);
+    	
+    	for(int i =0; i<weak.length;i++) {
+    		boolean[] visit = new boolean[weak.length];
+    		sol(n,weak,dist,1,i,visit);
+    		// 친구 수, 위치, 방문 가능 여부; 
+    	}
+    	
+    	answer = min;
+        return answer;
+    }
+
+	// 현재 사용된 친구수 즉(친구 dist거리 측정가능)  , 현 취기 
+	private static void sol(int n, int[] weak, int[] dist, int cnt, int index, boolean[] visit) {
+	
+		if( cnt>min) return;
+		if(cnt>dist.length) return;
+		if(visit[index])sol(n,weak,dist,cnt,(index+1)%weak.length,visit); // 만약 전에 방문처리가되어 있었다면 그냥 넘어가지 
+			
+		visit[index] =true; // 현위치는  무조건 방문 
+		for(int i=0; i<weak.length;i++) {
+			
+			int next = (index+i)%weak.length; // 다음위치, 넘어갈 경우에 대비해서
+			if(visit[next]) continue;
+			int dif = weak[next] -weak[index];
+			if( next<index) dif+=n; // 넘어 간 경우는 좋길이 더해 주면댐
+			if( dif > dist[dist.length-cnt]) break;
+			visit[next]= true;
+		}
+		int count = 0;
+		for(int i=0; i<visit.length;i++) {
+			if(visit[i]) count ++;
+		}
+		if(count ==visit.length) {
+			min =Math.min(min, cnt);
+			return;
+		};
+		sol(n,weak,dist,cnt+1,(index+1)%weak.length,visit);
+		
+	}
+
 }
+
+*/
