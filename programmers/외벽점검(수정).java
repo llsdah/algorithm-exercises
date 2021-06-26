@@ -53,8 +53,60 @@ class Solution {
     	answer = Cnt;
         return answer;
     }
-
-
+/* 내가 푼것 2탄.. 어디가 틀렸을까.흠..
+import java.util.*;
+class Solution {
+    int ans = (int)1e9;
+    int[] pp;//역순 정렬 할 것 친구들 .
+    // 총 합, 보수지점, 친구 투입 수, 현재 보수해야되는 지점, 보수 여부 
+    public void gogo(int n, int[] weak,int cnt,int index,boolean[] visit){
+        
+        if(cnt>=ans) return;
+        if(visit[index]) return;
+        
+        visit[index] =true;// 현재 보수 해야되는 지점 방문 
+        int next =0;
+        for(int i =0; i<weak.length;i++){
+            next = (index+i)%weak.length; // 다음 보수해야되는 지점
+            if(visit[next]) continue; // 방문했으면 넘어감. 
+            int dis = weak[next]-weak[index];// 거리는 다음지점 - 처음 시작점
+            if(next<index) dis+=n;// 위치 역전시 값 더해주면됨. 
+            if(pp[cnt-1]<dis) break; // 갈수 없는 거리라면 중단하면됨
+            visit[next]=true; // 갈수 있으면 참으로 
+        }
+        index =next; // 중단 되면 다음 방문해야되는 곳. 계속했을떄는 종료될꺼임.
+        int num = 0; // 다 방문했는지 수 세기 
+        for(int i=0; i<visit.length;i++){
+            if(visit[i]) num++;
+        }
+        if(num == visit.length) {
+            ans = Math.min(cnt,ans);// 최소인지 비교
+            return;
+        }else{
+            gogo(n,weak,cnt+1,index,visit);
+        }
+        
+    }
+    
+    public int solution(int n, int[] weak, int[] dist) {
+        // 우선 해당 부분의 시작으로 돌면서 체크 할 수 있는 것 생각
+        // 인원수의 최대는 8명 입니다.// 역순으로 도렬야 됩니다. 
+        Arrays.sort(weak); // 작은 순으로 
+        Integer[] temp = Arrays.stream(dist).boxed().toArray(Integer[]::new);
+        Arrays.sort(temp, Collections.reverseOrder());       
+        pp = Arrays.stream(temp).mapToInt(Integer::intValue).toArray();
+        
+        int answer = 0;
+        for(int i=0; i<weak.length;i++){
+            boolean[] visit = new boolean[weak.length]; // 부족한것 방문했는지
+            gogo(n,weak,1,i,visit);            
+        }
+        answer= ans;
+        return answer;
+    }
+}
+	
+*/
 /* 내가 푼것. 어디가 틀릴까 훔... 
 import java.util.*;
 class Solution {
