@@ -95,7 +95,7 @@ class Solution {
             return;// 다 방문했으니 종료
         }else{
         	for(int i=0; i<weak.length;i++){ // 약한점의 시작점을 달리하면 참가 
-        		boolean[] temp=Arrays.copyOf(visit, visit.length);
+        		boolean[] temp=Arrays.copyOf(visit, visit.length);//visit.clone();
                 if(visit[i]) continue;
         		go(N,weak,dis,cnt+1,i,temp);
             }        
