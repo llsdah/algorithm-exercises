@@ -53,6 +53,57 @@ class Solution {
     	answer = Cnt;
         return answer;
     }
+/* 내가 푼것 3탄 조금만 더 수정.. 80점까지..
+import java.util.*;
+class Solution {
+    int ans =(int)1e9;// 최소 지점 체크 
+    // 총둘레, 약한 지점길이. 친구길이
+    public int solution(int n, int[] weak, int[] dist) {
+        int answer = 0;
+        Arrays.sort(weak);
+        Integer[] friend = Arrays.stream(dist).boxed().toArray(Integer[]::new);
+        Arrays.sort(friend,Collections.reverseOrder());
+        int[] dis = Arrays.stream(friend).mapToInt(Integer::intValue).toArray();
+        for(int i=0; i<weak.length;i++){ // 약한점의 시작점을 달리하면 참가 
+            boolean[] visit = new boolean[weak.length];
+            go(n,weak,dis,1,i,visit);
+        }
+        answer =ans;
+        return answer;
+    }
+    public void go(int N,int[] weak, int[] dis,int cnt,int pos,boolean[] visit){
+        if(ans<=cnt) return;// 크다면 할 필요없다. 
+        if(cnt>dis.length) return;
+        if(pos>=weak.length) return;
+        //dis[cnt-1] 해당 친구가 갈 수있는 거리 cnt 지금 들어온 친구 명수니까.
+        visit[pos] = true;// 현재 포인트 체크 
+        int next=0;
+        for(int i=0; i<weak.length;i++){
+            next = (pos+i)%weak.length;// 다음 방문할 장소 . 
+            if(visit[next]) continue; //이미 방문하면 넘어가면댐. 순환이라.. 그냥 종료?
+            int distance = weak[next]-weak[pos];// 처음과 지금 이등거리 
+            if(next<pos) distance+=N;// 역전현상 발생시 
+            if(distance>dis[cnt-1]) break;
+            else visit[next]=true;
+        }
+        int num =0;// 사실인 것 체크 
+        for(int i=0;i<visit.length;i++){
+            if(visit[i]) num++;
+        }
+        if(num==visit.length) {
+            ans =Math.min(ans,cnt);
+            return;// 다 방문했으니 종료
+        }else{
+        	for(int i=0; i<weak.length;i++){ // 약한점의 시작점을 달리하면 참가 
+        		boolean[] temp=Arrays.copyOf(visit, visit.length);
+                if(visit[i]) continue;
+        		go(N,weak,dis,cnt+1,i,temp);
+            }        
+        }
+    }
+}
+*/
+	
 /* 내가 푼것 2탄.. 어디가 틀렸을까.흠..
 import java.util.*;
 class Solution {
