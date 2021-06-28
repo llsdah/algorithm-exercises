@@ -1,11 +1,56 @@
-package backJun;
 
+// 정답 1. 
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Scanner;
+import java.util.*;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(new InputStreamReader(System.in));
+
+		int n=sc.nextInt();
+        ArrayList<Test> list = new ArrayList<>();
+        for(int i=0; i<n;i++) {
+			int day = sc.nextInt();
+            int prize = sc.nextInt();
+            list.add(new Test(day,prize));
+		}
+		
+        PriorityQueue<Integer> q = new PriorityQueue<>();
+        
+        Collections.sort(list);
+        long sum =0;
+        for(int i=0; i<n;i++){
+            int dead =list.get(i).day;
+            int prize = list.get(i).prize;
+            q.offer(prize);
+            while(!q.isEmpty()&&q.size()>dead ){
+                q.poll();
+            }
+        }
+        while(!q.isEmpty()){
+            sum+=q.poll();
+        }
+		System.out.println(sum);
+		
+	}
+
+}
+class Test implements Comparable<Test>{
+    int day;
+    int prize;
+    Test(int day,int prize){
+        this.day =day;
+        this.prize =prize;
+    }
+    public int compareTo(Test o){
+        return this.day -o.day;
+    }
+}
+
+
+/* 시간 초과 판정 
 
 public class Main {
 
@@ -60,11 +105,4 @@ public class Main {
 	}
 
 }
-/*
-4
-100
-200
-12345
-1003
-
 */
