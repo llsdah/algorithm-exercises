@@ -1,4 +1,48 @@
 
+// 정답 2.  나풀이
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.PriorityQueue;
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(new InputStreamReader(System.in));
+
+		int n=sc.nextInt();
+
+		// 글래스 생성해서 날짜 순으로 정렬 
+//		ArrayList<Test> list = new ArrayList<>();
+		int[][] arr =new int[n][2];
+		for(int i=0; i<n;i++) {
+			arr[i][0] =sc.nextInt();
+			arr[i][1] =sc.nextInt();
+		}
+		Arrays.sort(arr, (o1,o2)-> Integer.compare(o1[0], o2[0]) );
+		
+		
+		PriorityQueue<Integer> q = new PriorityQueue<>();//라면 값 넣기 (오름차순됨)
+		
+		//Collections.sort(list);
+		long sum =0;
+		for(int i=0; i<n;i++) {
+			int dead = arr[i][0];
+			int prize = arr[i][1];
+			q.offer(prize);
+			while(!q.isEmpty()&& q.size()>dead) {
+				q.poll(); // 사이즈가 크면 작은거 없에면된다. 
+			}
+		}
+		while(!q.isEmpty()) {
+			sum+=q.poll();
+		}
+		System.out.println(sum);
+		
+	}
+}
+
 // 정답 1. 
 import java.io.InputStreamReader;
 import java.util.*;
