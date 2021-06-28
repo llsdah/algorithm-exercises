@@ -37,7 +37,7 @@ class Solution {
         
         while(st < max){
             mid = (st+max)/2;
-            int num =0;
+            int num =0; // long num !!
             for(int i=0; i<times.length;i++){
                 num+=(mid/times[i]);
             }
