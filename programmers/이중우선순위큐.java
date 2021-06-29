@@ -19,6 +19,9 @@ class Solution {
             }
             Collections.sort(list);
         }
+        
+        
+        Collections.sort(list); // 그냥 입력만 했을때 정렬 안됨. 
         if(list.size()==0){
             return answer;
         }
