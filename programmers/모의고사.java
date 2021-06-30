@@ -18,7 +18,7 @@ class Solution {
                 answer[1]++;
             }
             pos =i%thr.length;
-            if(answers[i]==two[pos]){
+            if(answers[i]==thr[pos]){ // 오타 수정 !!two -> thr
                 answer[2]++;
             }
         }
