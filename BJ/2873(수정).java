@@ -21,15 +21,27 @@ public class Main {
 		int r=sc.nextInt(); // 총 칸의수
 		endX =n;
 		endY =r;
-		
 		arr = new int[n][r];
+		int min =(int)1e9;
 		for(int i=0; i< n;i++) {
 			for(int k=0;k<r;k++) {
 				arr[i][k] =sc.nextInt();
+				min = Math.min(min, arr[i][k]);
 			}
 		}
-		
+		// 한개라도 홀수면 그냥 다 방문
 		boolean[][] visit = new boolean[n][r];
+		//둘다 짝수면?
+		if(n%2==0&&r%2==0) {
+			loof : for(int i=0; i< n;i++) {
+				for(int k=0;k<r;k++) {
+					if(min==arr[i][k]) {
+						visit[i][k]=true;
+						break loof;
+					}
+				}
+			}
+		}
 		String str ="";
 		bfs(0,0,0,visit,str);
 		System.out.println(sum+" "+map.get(sum));
