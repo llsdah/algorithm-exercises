@@ -127,7 +127,7 @@ public class Main {
 		}else if(C%2==1) { //열이 홀수 회전한 ㄹ 모양 방문
 			for(int i=0;i<C;i++) {
 				for(int k=0;k<R-1;k++) {
-					if(i%2==1) sb.append("D");
+					if(i%2==0) sb.append("D");
 					else sb.append("U");
 				}
 				if(i !=C-1) sb.append("R");
