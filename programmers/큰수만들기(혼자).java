@@ -46,7 +46,48 @@ class Solution {
         return answer;
     }
 }
+/* 0704 
 
+import java.util.*;
+class Solution {
+    public String solution(String number, int k) {
+        String answer = "";
+        int value =0;
+        int max = number.length() -k;
+        int st = 0;
+        StringBuilder sb = new StringBuilder();
+        
+        while(k>0){
+            int pos =0; // 새로운 것이 시작할 위치 
+            value =0;
+            for(int i =st;i<number.length();i++){
+                int num = 0;
+                if(i+max>=number.length()){
+                    num =Integer.valueOf(number.substring(i));
+                }else num =Integer.valueOf(number.substring(i,i+max));
+
+                if (num>value){
+                    value = num;
+                    pos = i+1;
+                }
+            }
+            //System.out.println(value);
+        
+            if(pos!=0){
+                sb.append(number.charAt(pos-1));    
+            }
+            k = pos-st;
+            st = pos;
+            max--;
+        }
+        
+        answer = sb.toString();
+        
+        return answer;
+    }
+}
+
+*/
 /* 과거 형 
 class Solution {
     String ans ="";
