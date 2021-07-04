@@ -1,3 +1,33 @@
+// 조금더 효율 적인 것 1ㅣ 
+class Solution {
+    public String solution(String number, int k) {
+        String answer = "";
+        StringBuilder sb= new StringBuilder();
+        int cnt = number.length()-k;// 총 자릿 수 
+        int st = 0; // 시작
+        int end = number.length()-cnt;// 끝 위치
+        int max = -1;
+        int pos = 0; // 넣을 위치 
+        
+        while(cnt >0){
+            max =-1;
+            for(int i=st;i<=end;i++){
+                int num = number.charAt(i)-'0'; //숫자
+                if(num>max){ // 현위치에서 가장 큰서 
+                    pos =i;
+                    max = num; 
+                }
+            }
+            sb.append(number.charAt(pos));
+            st = pos+1;
+            cnt--;
+            end = number.length() - cnt;
+        }
+        answer = sb.toString();
+        return answer;
+    }
+}
+// 정답 1
 import java.util.*;
 
 class Solution {
