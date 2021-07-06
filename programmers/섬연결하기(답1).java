@@ -1,36 +1,65 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 
-public class 섬연결 {
+import java.util.*;
+class Solution {  // 이렇게 풀어야디 . !
+    // 모든경로 방문의 최소의 수 
+    ArrayList<Is> node = new ArrayList<>();
+    int[] parent =new int[10001];
+    public int solution(int n, int[][] costs) {
+        int answer = 0;
+        // 이건 사이클 반별위한 부모 노드 초기화 
+        for(int i=0; i<n;i++){
+            parent[i]=i;
+        }
+        
+        for(int i=0; i< costs.length;i++){
+            int a = costs[i][0];
+            int b = costs[i][1];
+            int c = costs[i][2];
+            node.add(new Is(a,b,c));
+        }
+        Collections.sort(node);
+        
+        for(int i=0; i< node.size();i++){
+            int a = node.get(i).a;
+            int b = node.get(i).b;
+            int c = node.get(i).dis;
+            if(find(a)!=find(b)){
+                union(a,b);
+                answer+=c;
+            }
+        }
+        
+        return answer;
+    }
+    public int find(int x){
+        if(x==parent[x]) return x;
+        return parent[x] =find(parent[x]);
+    }
+    public void union(int a,int b){
+        a = find(a);
+        b = find(b);
+        if(a<b) parent[b] =a;
+        else parent[a]=b;
+    }
+}
 
-	public static void main(String[] args) {
+class Is implements Comparable<Is>{
+    int a;
+    int b;
+    int dis;
+    Is(int a, int b, int dis){
+        this.a =a;
+        this.b =b;
+        this.dis = dis;
+    }
+    public int compareTo(Is o){
+        return this.dis- o.dis;
+    }
+    
+}
 
-		// int m = 4;
-		// int n = 5;
-		// String[] board = { "CCBDE", "AAADE", "AAABF", "CCBBF" };
 
-		int n = 5;
-//		int[][] tt = {{0,1,1},{0,2,2},{1,2,5},{1,3,1},{2,3,8}};
-//		int[][] tt =  {{0, 1, 5}, {1, 2, 3}, {2, 3, 3}, {3, 1, 2}, {3, 0, 4}, {2, 4, 6}, {4, 0, 7}};
-//		int[][] tt = {{0, 1, 1}, {3, 4, 1}, {1, 2, 2}, {2, 3, 4}};
-//		int[][] tt = {{0, 1, 5}, {0, 3, 2}, {0, 4, 3}, {1, 4, 1}, {3, 4, 10}, {1, 2, 2}, {2, 5, 3}, {4, 5, 4}};
-
-//		int[][] tt ={{0, 1, 1}, {2, 3, 1}, {3, 4, 2}, {1, 2, 2}, {0, 4, 100}};
-		int[][] tt = {{0, 1, 1}, {0, 4, 5}, {2, 4, 1}, {2, 3, 1}, {3, 4, 1}};
-//		int[][] tt = {{0, 1, 1}, {0, 2, 2}, {0, 3, 3}, {0, 4, 4}, {1, 3, 1}};
-
-		String sentense = "HaEaLaLaObWORLDb";
-
-		int result = solution(n, tt);
-
-		// long[] result = solution4(n,z,roads,queries);
-
-		System.out.println("result : " + result);
-
-	}
-	
+public class 섬연결 { // 과거 답안.. 
 	static int parent[];
 	public static int solution(int n, int[][] costs) {
 // 최소 간선 찾기 크루스칼알고리즘 간선의 가중치를 오름차순으로 정렬합니다. 
