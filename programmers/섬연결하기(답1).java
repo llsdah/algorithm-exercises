@@ -120,4 +120,52 @@ public class 섬연결 {
 	
 }
 
+/* 실수.. 하하하하.. 
 
+import java.util.*;
+class Solution {
+    public int solution(int n, int[][] costs) {
+        int answer = 0;
+        // 모든 점에서 모든 점까지 가는 비용 
+        int[][] arr = new int[n][n];
+        for(int i=0; i<n;i++){
+            Arrays.fill(arr[i],(int)1e9);    
+        }
+        for(int a=0; a<n;a++){
+            arr[a][a]=0;
+        }
+        
+        for(int i=0; i<costs.length;i++){
+            int a = costs[i][0];
+            int b = costs[i][1];
+            int c = costs[i][2];
+            
+            arr[a][b]=c;
+            arr[b][a]=c;
+        }
+        
+        // n ab = n ak kb;
+        
+        for(int a=0; a<n;a++){
+            for(int b = 0;b<n;b++){
+                for(int k=0; k<n;k++){
+                    arr[a][b] = Math.min(arr[a][k]+arr[k][b],arr[a][b]);
+                }
+            }
+        }
+        for(int k=0; k<n;k++){
+            System.out.println(Arrays.toString(arr[k]));
+        }
+        
+        int min = (int)1e9;
+        for(int a=0; a<n;a++){
+            for(int b = 0;b<n;b++){
+                if(a==b) continue;
+                min =Math.min(min, arr[a][b]);
+            }
+        }
+        answer = min;
+        return answer;
+    }
+}
+*/
