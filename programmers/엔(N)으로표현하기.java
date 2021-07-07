@@ -1,3 +1,41 @@
+
+/* 초과하느 잘 못된 솔루션 . 
+import java.util.*;
+class Solution {
+    int cnt =(int)1e9;
+    public int solution(int N, int number) {
+        int answer = 1;
+        if(N==number) return answer;
+        
+        
+        check(number,N,N+N,2);
+        check(number,N,N*N,2);
+        check(number,N,N/N,2);
+        check(number,N,N-N,2);
+        
+        answer= cnt;
+        return answer;
+    }
+    public void check(int num,int N, int ans,int count){
+        if(num==ans){
+            cnt = Math.min(cnt,count);
+            return;
+        }
+        if(cnt<count) return;
+        
+        
+            check(num,N,ans+N,count+1);
+            check(num,N,ans*N,count+1);
+        
+            check(num,N,ans/N,count+1);
+            check(num,N,ans-N,count+1);
+        
+        
+        
+    }
+}
+
+// 정답 입니다. 
 import java.util.*;
 class Solution {
 // 숫자를 최대 8개 까지 이용이 가능합니다. 
@@ -45,3 +83,4 @@ class Solution {
     }
     
 }
+*/
