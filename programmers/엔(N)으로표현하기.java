@@ -4,7 +4,7 @@ class Solution {
     int cnt =9;
     public int solution(int N, int number) {
         int answer = -1;
-        if(N==number) return answer;
+        if(N==number) return 1;//수정
         
         
         check(number,N,N+N,2);
