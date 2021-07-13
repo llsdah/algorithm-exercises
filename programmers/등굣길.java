@@ -90,8 +90,8 @@ class Solution {
         col = m;
         row = n;
         for(int i=0; i<puddles.length;i++){
-            int b = puddles[i][0];// 열
-            int a = puddles[i][1];// 행
+            int b = puddles[i][0]-1;// 열 한개씩 뺴야되느데 까먹었담. 
+            int a = puddles[i][1]-1;// 행
             visit[a][b] =true;
             arr[a][b]=1;
         }
