@@ -1,3 +1,50 @@
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(new InputStreamReader(System.in));
+
+		int c = sc.nextInt(); // 총 크레인수
+		ArrayList<Integer> crain = new ArrayList<>();
+		for (int i = 0; i < c; i++) {
+			int num = sc.nextInt();
+			crain.add(num);
+		}
+
+		int b = sc.nextInt();// 배수
+		ArrayList<Integer> bea = new ArrayList<>();
+		for (int i = 0; i < b; i++) {
+			int num = sc.nextInt();
+			bea.add(num);
+		}
+		Collections.sort(crain,Collections.reverseOrder());
+		Collections.sort(bea,Collections.reverseOrder());
+		if (crain.get(0) < bea.get(0))
+			System.out.println("-1");
+		else {
+			int cnt = 0;
+			while (!bea.isEmpty()) {
+				int pos = 0;
+				for(int i =0; i< crain.size();i++) {
+					if(pos == bea.size())break;
+					else if(crain.get(i)>=bea.get(pos)) {
+						bea.remove(pos);
+						i++;
+					}else pos++;
+					i--;
+				}
+				cnt++;
+			}
+			System.out.println(cnt);
+		}
+	}
+}
+
 // 시간 조초과. 
 import java.io.IOException;
 import java.io.InputStreamReader;
