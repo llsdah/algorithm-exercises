@@ -1,3 +1,7 @@
+
+
+/* 일단 패스 수학 식으로 풀기 
+
 import java.util.*;
 class Solution {
     static int[][] arr;
@@ -70,7 +74,7 @@ class Node{
     }
 }
 
-
+*/
 
 /* 어디가 이상할까 . 흠.흠. 
 import java.util.*;
