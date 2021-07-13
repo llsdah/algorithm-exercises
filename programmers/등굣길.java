@@ -73,54 +73,54 @@ class Node{
 
 
 /* 어디가 이상할까 . 흠.흠. 
-
 import java.util.*;
 class Solution {
-    int cnt =0;
-    int[][] arr;
-    int row;
-    int col;
+    int[][] arr ;
+    int row =0;
+    int col =0;
     int[] dr = {1,0};
-    int[] dc ={0,1};
+    int[] dc = {0,1};
     public int solution(int m, int n, int[][] puddles) {
-        int answer = 0;
+        int answer = 0; // m 열, n 행
+        row =n;
+        col =m;
         arr = new int[n][m];
-        boolean[][] visit = new boolean[n][m];
-        // m이 열, n 행 , 행열 반대 입니다. 
-        col = m;
-        row = n;
-        for(int i=0; i<puddles.length;i++){
-            int b = puddles[i][0]-1;// 열 한개씩 뺴야되느데 까먹었담. 
-            int a = puddles[i][1]-1;// 행
-            visit[a][b] =true;
-            arr[a][b]=1;
+        //boolean[][] visit = new boolean[n][m]; // 나중에 방문 가능여부 체크시 
+        // 우선 방문이 가능한지 여부 부터체크 합니다.
+        for(int i=0; i <puddles.length;i++){
+            int b = puddles[i][0]-1;
+            int a = puddles[i][1]-1;
+            arr[a][b] =-1;
+            //visit[a][b]= true;
         }
+        arr[0][0] =1;
+        if(bfs(0,0)) return answer; // 방문 가능 여부 확인안되면 0을 돌려주면됩니다. 
         
-        bfs(0,0);
-        answer = cnt;
         return answer;
     }
-    public void bfs(int r,int c){
-        
+    public boolean bfs(int r,int c){
         Queue<Node> q = new LinkedList<>();
         q.offer(new Node(r,c));
         while(!q.isEmpty()){
             Node node = q.poll();
             int nr = node.r;
             int nc = node.c;
-            if(nr==row-1&&nc==col-1) {
-                cnt++;
-                continue;
-            }
-            if(nr>=row||nc>=col||nr<0||nc<0) continue;
-            if(arr[nr][nc]==1) continue;
-            for(int i =0; i<2;i++){
-                int newr = dr[i]+nr;
-                int newc = dc[i]+nc;
+            
+            for(int i =0; i< 2;i++){
+                int newr = nr+dr[i];
+                int newc = nc+dc[i];
+                
+                if( newr == row-1&&newc==col-1) return true;
+                
+                if( newr>=row||newc>=col) continue;
+                
+                if( arr[newr][newc]==-1) continue;
+                
                 q.offer(new Node(newr,newc));
             }
+            
         }
-        
+        return false;
     }
     
 }
@@ -129,9 +129,8 @@ class Node{
     int r;
     int c;
     Node(int r, int c){
-        this.r =r;
+        this.r = r;
         this.c = c;
     }
 }
-
 */
