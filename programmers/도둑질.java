@@ -8,7 +8,8 @@ class Solution {
         // 2가지의 경우로 나누어서 풀기 
         // 1. 마지막 것을 안훔치는 경우 
         one[0] = money[0];
-        one[1] = money[1];
+        one[1] = Math.max(money[0],money[1]); // 여기 중요 그냥 money[1]로 해버리면 안됨. 둘중에 큰값이 와야댐
+        // 10 2 2 1000 2 일 경우 10 이랑 1000 즉 두칸 전이 전택 되야 됨 
         for(int i=2;i<money.length;i++){
            one[i] = Math.max(one[i-1],money[i]+one[i-2]); 
         }
