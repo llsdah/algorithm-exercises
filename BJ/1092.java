@@ -1,5 +1,60 @@
-// 틀림.. 
+// 시간 조초과. 
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Scanner;
 
+public class Main {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(new InputStreamReader(System.in));
+
+		int c = sc.nextInt(); // 총 크레인수 
+		int[] crain = new int[c];
+		for(int i=0;i<c;i++) {
+			crain[i]=sc.nextInt();
+		}
+
+		// 크레인 수 돌리고 그안에서 큰것부터 실고, 그안에서 큰 순서 대로 돌면되겠지 . 
+		
+		
+		int b = sc.nextInt();// 배수 
+		int[] bea = new int[b];
+		for(int i=0;i<b;i++) {
+			bea[i]=sc.nextInt();
+		}
+		Arrays.sort(crain);
+		Arrays.sort(bea);
+		// 방문 체크용 // 맨 마지막이 들어가면 끄내면됨
+		int cnt = 0;
+		boolean[] flag = new boolean[b];
+		
+		loof : while(true) {
+			
+			for(int i =c-1;i>=0;i--) {
+				for(int k =b-1;k>=0;k--) {
+					if(flag[k]) continue;
+					if(crain[i]>=bea[k]) {
+						flag[k]= true;
+						break;
+					}
+				}
+			}
+			cnt++;
+			for(int i =0; i<b;i++) {
+				if(!flag[i]) break;
+				if(i==b-1) break loof;
+			}
+			
+		}
+		
+		System.out.println(cnt);
+	}
+}
+
+
+// 틀림.. 
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
