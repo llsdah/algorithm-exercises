@@ -9,6 +9,7 @@ public class Main {
 
 		Scanner sc = new Scanner(new InputStreamReader(System.in));
 
+		// list 를 통해 필요없는 자료를 하나씩 삭제 가면서 시간을 줄이야 한다. 
 		int c = sc.nextInt(); // 총 크레인수
 		ArrayList<Integer> crain = new ArrayList<>();
 		for (int i = 0; i < c; i++) {
@@ -22,11 +23,12 @@ public class Main {
 			int num = sc.nextInt();
 			bea.add(num);
 		}
+		
 		Collections.sort(crain,Collections.reverseOrder());
 		Collections.sort(bea,Collections.reverseOrder());
 		if (crain.get(0) < bea.get(0))
 			System.out.println("-1");
-		else {
+		else { 
 			int cnt = 0;
 			while (!bea.isEmpty()) {
 				int pos = 0;
