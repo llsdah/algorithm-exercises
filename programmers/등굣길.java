@@ -69,3 +69,69 @@ class Node{
         return this.c;
     }
 }
+
+
+
+/* 어디가 이상할까 . 흠.흠. 
+
+import java.util.*;
+class Solution {
+    int cnt =0;
+    int[][] arr;
+    int row;
+    int col;
+    int[] dr = {1,0};
+    int[] dc ={0,1};
+    public int solution(int m, int n, int[][] puddles) {
+        int answer = 0;
+        arr = new int[n][m];
+        boolean[][] visit = new boolean[n][m];
+        // m이 열, n 행 , 행열 반대 입니다. 
+        col = m;
+        row = n;
+        for(int i=0; i<puddles.length;i++){
+            int b = puddles[i][0];// 열
+            int a = puddles[i][1];// 행
+            visit[a][b] =true;
+            arr[a][b]=1;
+        }
+        
+        bfs(0,0);
+        answer = cnt;
+        return answer;
+    }
+    public void bfs(int r,int c){
+        
+        Queue<Node> q = new LinkedList<>();
+        q.offer(new Node(r,c));
+        while(!q.isEmpty()){
+            Node node = q.poll();
+            int nr = node.r;
+            int nc = node.c;
+            if(nr==row-1&&nc==col-1) {
+                cnt++;
+                continue;
+            }
+            if(nr>=row||nc>=col||nr<0||nc<0) continue;
+            if(arr[nr][nc]==1) continue;
+            for(int i =0; i<2;i++){
+                int newr = dr[i]+nr;
+                int newc = dc[i]+nc;
+                q.offer(new Node(newr,newc));
+            }
+        }
+        
+    }
+    
+}
+
+class Node{
+    int r;
+    int c;
+    Node(int r, int c){
+        this.r =r;
+        this.c = c;
+    }
+}
+
+*/
