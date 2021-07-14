@@ -85,3 +85,41 @@ class Solution {
     }
 }
 */
+
+/* 틀린 풀이  시간이 . 안맞다. 
+import java.util.*;
+
+// 상당한 수의 양을 체크해야된다. 결국 이분탐색으로 시간을 획기적으로 줄일 수 밖에 없다. 
+// 문제의 체크해야되는 양을 보고 판단하자. 
+class Solution {
+    public long solution(int n, int[] times) {
+        long answer = 0;
+        Arrays.sort(times); // 우선 짧은 시간 순으로 정렬
+        long[][] arr = new long[times.length][2];
+        for(int i=0; i <times.length;i++){
+            arr[i][0] =i;
+            arr[i][1] = times[i];
+        }
+        
+        
+        while(n>0){
+            arr[0][1]+=times[(int)arr[0][0]];
+            Arrays.sort(arr, new Comparator<long[]>(){
+                public int compare(long[] o1, long[] o2){
+                    return o1[1]>o2[1] ? 1: -1;
+                }
+            });
+            n--;
+        }
+        long max = 0;
+        for(int i =0; i<arr.length;i++){
+            long temp = Arrays.stream(arr[i]).max().getAsLong();
+            max = max > temp ? max : temp;
+        }
+        answer =max;
+        return answer;
+    }
+}
+/*
+
+
