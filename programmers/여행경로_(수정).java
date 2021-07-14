@@ -1,3 +1,39 @@
+import java.util.*; // 시간초과 
+class Solution {
+    int[] visit;
+    public String[] solution(String[][] tickets) {
+        visit = new int[tickets.length];
+        StringBuilder sb = new StringBuilder();
+        String start = "ICN";
+        // 우선 정렬 
+        Arrays.sort(tickets, new Comparator<String[]>(){
+           public int compare(String[] o1, String[] o2){
+               if(o1[0].equals(o2[0])) return o1[1].compareTo(o2[1]);
+               return o1[0].compareTo(o2[0]);
+           }
+        });
+        sb.append(start+",");
+        
+        while(true){
+            for(int i=0; i<tickets.length;i++){
+                if(visit[i]==1) continue;
+                if(tickets[i][0].equals(start)){
+                    start = tickets[i][1];
+                    sb.append(tickets[i][1]+",");
+                    visit[i]= 1;
+                    break;
+                }
+            }    
+            long num = Arrays.stream(visit).filter(i -> i == 1 ).count();
+            if(num ==visit.length) break;
+        }
+        
+        String[] answer = sb.toString().split(",");
+        
+        return answer;
+    }
+}
+
 // 이건 모든 항공권 사용을 위해 .. 순서가 꼬인 항공권의 경우 안된다 그렇기에 정답 1 면 dfs로 사용해야된다.
 import java.util.*; // 시간 초과 
 class Solution {
