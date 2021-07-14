@@ -33,10 +33,12 @@ public class Main {
 
 	private static int book(int n, int m, int[][] arr) {
 
+		
+		// 끝에서 부터 정렬 하고 같은거는 앞으로 정렬 
 		Arrays.sort(arr, new Comparator<int[]>() {
 			public int compare(int[] o1,int[] o2) {
-				if(o1[0]==o2[0]) return o1[1]-o2[1];
-				return o1[0]-o2[0];
+				if(o1[1]==o2[1]) return o1[0]-o2[0];
+				return o1[1]-o2[1];
 			}
 		});
 		int cnt = 0;// 학생수 카운트 
