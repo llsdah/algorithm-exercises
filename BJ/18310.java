@@ -18,7 +18,8 @@ public class Main {
 		}
 		Arrays.sort(arr);
 		
-		int cnt = (arr[0]+arr[arr.length-1])/2;
+		//int cnt = (arr[0]+arr[arr.length-1])/2; // 그냥 쉽게 막 찍었는데 .. 맞네
+		int cnt = arr[arr.length/2-1]; // 왜 ㅇ게 맞는건지는 모르곘다. 
 		System.out.println(cnt);
 	}
 }
