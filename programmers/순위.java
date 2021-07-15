@@ -1,3 +1,34 @@
+// 플로이드워셜 알고리즘. 
+import java.util.*;
+class Solution {
+    public int solution(int n, int[][] results) {
+        int answer = 0;
+        // 등수만 찾는다 결국 다 돌아 다니냐가 중요한 문제 
+        boolean[][] game = new boolean[n+1][n+1];
+        for(int i=0; i<results.length;i++){
+            game[results[i][0]][results[i][1]] = true;
+        }
+        for(int i =1; i<=n;i++){
+            for(int k =1; k<=n;k++){
+                for(int h =1; h<=n;h++){
+                    if(game[k][i]&&game[i][h]){
+                        game[k][h] = true;//거쳐 갈 수 있다 즉 , 승부의 내용을 알 수가 있다는 의미 
+                    }
+                }
+            }
+        }
+        for(int i=1; i<=n;i++){
+            int result =0;// 전체 경기가 진행되면 결과알수있음.
+            for(int k =1;k<=n;k++){
+                if(game[i][k]|game[k][i]) result++;
+            }
+            if(result==n-1) answer++;
+        }
+        
+        return answer;
+    }
+}
+/*
 import java.util.*;
 
 class Solution {
@@ -58,7 +89,7 @@ class Solution {
 	}
 
 }
-
+*/
 
 /* 정렬 후 맞는지 확인 중.. 
 
