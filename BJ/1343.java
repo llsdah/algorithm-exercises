@@ -42,7 +42,7 @@ public class Main {
 			
 		}
 		if(cnt==2) sb.append(b);
-		
+		else if(cnt==1||cnt==3) flag = false; // cnt에 잔여가 있으면 안됨. !!! 실수 
 		
 		
 		if(flag) System.out.println(sb.toString());
