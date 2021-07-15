@@ -58,3 +58,47 @@ class Node implements Comparable<Node>{
         return this.dis -o.dis;
     }
 }
+/*
+import java.util.*;
+
+class Solution {
+    public int solution(int n, int[][] edge) {
+        boolean[][] map = new boolean[n+1][n+1];
+        for(int i =0; i <edge.length;i++) {
+            map[edge[i][0]][edge[i][1]]  =map[edge[i][1]][edge[i][0]] =true;
+        }
+
+        int[]   visit = new int[n+1];
+        Queue<Integer> q = new LinkedList<Integer>();
+
+        q.add(1); 
+        int max =0;
+
+        while(!q.isEmpty()) {
+            int value =q.poll();
+
+            for( int k =2;k<=n;k++) {
+
+                if(visit[k]==0&& map[value][k]) {
+                    visit[k] = visit[value]+1;
+                    q.add(k);
+                    max = Math.max(max, visit[k]);
+                }
+
+            }//for
+
+        }//while
+
+        int answer =0;
+        for( int i =0; i<visit.length;i++) {
+            if(max==visit[i]) {
+                answer++;
+            }
+        }
+
+        return answer;
+
+    }
+}
+
+*/
