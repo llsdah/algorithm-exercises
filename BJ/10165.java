@@ -50,15 +50,23 @@ public class Main {
 			q.removeFirst();
 		}
 		
-		ArrayList<Integer> num = new ArrayList<>();
+		// 내부로직 수정 ver 2.0
+ 	       StringBuilder sb = new StringBuilder();
 		while(!q.isEmpty()) {
 			int pos = q.poll().num; // 번호를 저장하면됩니다. 
-			num.add(pos);
+			sb.append(pos+",");
 		}
-		Collections.sort(num, (a,b)->(a-b));
-		for(int nums : num) {
-			System.out.print(nums+" ");
+		String[] str = sb.toString().split(",");
+		int[] arr = new int[str.length];
+		
+		for(int i=0; i<str.length;i++) {
+			arr[i] =Integer.valueOf(str[i]);
 		}
+		Arrays.sort(arr);
+		for(int i=0; i<arr.length;i++) {
+			System.out.print(arr[i]+" ");
+		}
+		
 		
 	}
 }
