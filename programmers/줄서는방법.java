@@ -1,3 +1,27 @@
+
+	public static int[] solution(int n, long k) {
+		ArrayList<Integer> list = new ArrayList<>(); // 숫자 뽀ㅃ기
+		int[] ans = new int[n];
+		long cnt = 1; // 몇뻔쨰인지 알도록 
+		for(int i =1; i<=n;i++) {
+			cnt*=i; 
+			list.add(i); 
+		}
+		k--;
+		int pos = 0; // 위치 
+		while(n>0) {
+			cnt /=n; // 자리 수 정해짐 
+			ans[pos] = list.get( (int)(k/cnt) );
+			pos++;
+			list.remove((int)(k/cnt));
+			k %= cnt;	
+			n--;
+		}
+		
+		
+        return ans;
+    }
+/*
 import java.util.*;
 class Solution {
     String ans ="";
@@ -42,3 +66,4 @@ class Solution {
         return answer;
     }
 }
+*/
