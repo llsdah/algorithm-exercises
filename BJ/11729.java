@@ -1,3 +1,4 @@
+// 시간초과.. 흠...
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class Main {
 		// 갯수, 시작 중간 끝
 		solve(n,1,2,3);
 		System.out.println(total);
-		String[] arr = sb.toString().split(",");
+		String[] arr = sb.toString().split(","); // 다름 점은 이건데.. 이거 때문에 시간이 초과라니.. 흠.. 
 		for(int i=0; i<arr.length;i++) {
 			System.out.println(arr[i]);
 		}
