@@ -4,6 +4,14 @@ class Solution {
         int answer = 0;
         // 2가지 경우 끝에 것을 안떈다 뗸타 
         int leng = sticker.length;
+        // 예외 처리 갯수가 작을 경우 
+        if(leng==1){
+            return sticker[0];
+        }else if(leng==2){
+            answer = Math.max(sticker[0],sticker[1]);
+            return answer;
+        }
+          
         int[] one = new int[leng]; // 마지막 안훔침
         int[] two = new int[leng];
         
