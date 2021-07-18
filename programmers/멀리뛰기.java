@@ -6,7 +6,10 @@ class Solution {
         long answer = 0;
         // 한번에 한칸 또는 두칸.
         long[] arr = new long[n+1];
-        
+        if( n<=2) {
+            answer = n==1 ? 1 :2;
+            return answer;
+        }
         arr[1] = 1;
         arr[2] = 2;
         for(int i=3;i<=n;i++){
