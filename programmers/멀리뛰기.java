@@ -13,7 +13,7 @@ class Solution {
             arr[i] = arr[i-1]+arr[i-2];
         }
         
-        answer = arr[n];
+        answer = arr[n]%1234567;
         return answer;
     }
 }
