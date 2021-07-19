@@ -2,6 +2,34 @@ import java.util.*;
 class Solution {
     public int solution(int n, int[] stations, int w) {
         int answer = 0;
+        Queue<Integer> q = new LinkedList<>();
+        Arrays.sort(stations);
+        for(int i =0;i<stations.length;i++){
+            q.offer(stations[i]); // 설치 아파트 추가
+        }
+        int pos = 1;// 시작지점이 111
+        while(pos<=n){ // 같아 질떄까지 있는지 체크
+            // 비어 있으면 안대!!,
+            // 범위안에 있으면
+            if(!q.isEmpty() && pos >= q.peek()-w){
+                pos = q.poll()+w+1;// 범위 밖으로 이동!!
+            }else{ // 범위에 없다!
+                answer++;// 기지국 하나 뚝딱
+                pos +=(w*2+1); //설치했으니 해당범위 밖으로 이동. 
+                
+            }
+            
+        }
+        
+        return answer;
+    }
+}
+
+/* 시간 초가. 
+import java.util.*;
+class Solution {
+    public int solution(int n, int[] stations, int w) {
+        int answer = 0;
         // 그리디로 풀자 
         // [실행] 버튼을 누르면 출력 값을 볼 수 있습니다.
         // 가정의 수 + 현재 기지국 위치 + 범위 
@@ -36,7 +64,6 @@ class Solution {
     }
 }
 
-/*
 
 import java.util.*;
 class Solution {
