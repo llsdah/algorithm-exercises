@@ -1,3 +1,4 @@
+// 시간 초과 부분 큐가 아니라 그냥 stations 자체의 코드를 통해 풀면되겠다. 
 import java.util.*;
 class Solution {
     public int solution(int n, int[] stations, int w) {
