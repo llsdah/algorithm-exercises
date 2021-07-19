@@ -1,4 +1,88 @@
- import java.util.*;
+import java.util.*;
+class Solution {
+    public String solution(String sentence) {
+        String answer = "";
+        // 규직 1과 2 나누어 생가가 
+        ArrayList<Integer> pos = new ArrayList<>(); // 위치 지정용 
+        ArrayList<String>  word = new ArrayList<>();
+        
+        char temp = ' ';
+        char[] arr = sentence.toCharArray();
+        int leng = sentence.length();
+        String no = "invalid";
+        
+        
+        while(leng>0){ //무조건 참
+            if(leng<3) return no;
+            
+            // 규칙 2 소문자로 시작 합니다. 
+            if(small(arr,0)){
+                temp = arr[0];
+                int index = 0;
+                for(int i=1; i<leng;i++){
+                    if(arr[i]==temp){
+                        index =i;
+                        break;   
+                    }
+                }
+                if(index==0) return no;
+                word.add(sentence.substring(0,index+1));// 여기까지가 정답입니다.
+                sentence = sentence.substring(index+1);
+                arr = sentence.toCharArray(); // 새롭게 재정의 
+                leng = arr.length;
+            }else{
+                // 규칙 1번 대문자
+                if(!small(arr,1)) return no;
+                temp = arr[1];// 두번쨰 부터 소문자니까 
+                
+                int index = -1;
+                for(int i =2; i<leng;i++){
+                    if(small(arr,i)){
+                        index =i;
+                        if(arr[index]!= temp) break;
+                    } // 작은 문자? 그리고 달라지면 종료!
+                }
+                
+                if(index == -1) return no ;// 안된다는 거니까
+                
+                while(index>=1){
+                    if( temp==arr[index]) break;
+                    index--;
+                }
+                word.add(sentence.substring(0,index+2));//?
+                sentence = sentence.substring(index+2);
+                arr = sentence.toCharArray();
+                leng = arr.length;
+            }
+            
+        }// while 건
+        StringBuilder sb = new StringBuilder();
+        for(String str : word){
+            sb.append(check(str));
+            sb.append(" ");
+        }    
+        answer = sb.toString().trim();   
+        return answer;
+    }
+    public String check(String str){
+        char[] arr = str.toCharArray();
+        if(small(arr,0)) str = str.replace(arr[0],' ');
+        if(small(arr,1)) str = str.replace(arr[1],' ');
+        if(small(arr,2)) str = str.replace(arr[2],' ');
+       str= str.replace(" ","");
+        
+        return str;
+        
+    }
+    public boolean small(char[] arr, int index ){
+        if(arr[index]>='a'&&arr[index]<='z') return true;
+        return false;
+    }
+    
+}
+
+/*
+import java.util.*;
 class Solution {
     
     int end = 0;// 해당 시정의 끝 위치 
@@ -55,3 +139,5 @@ class Solution {
         sb.append(" ");
     }
 }
+
+*/
