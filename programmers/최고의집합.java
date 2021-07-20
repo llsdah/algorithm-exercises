@@ -8,13 +8,9 @@ class Solution {
         if(n>s) return no;
         int num = s/n;
         int re = s%n;
-        for(int i=0; i<n;i++){
-            answer[i]=num; // 중간 수로 다 채우기
-        }
-        for(int i=0; i<n;i++){
-            if(re==0) break;
-            answer[i]++; // 나머지를 돌아가면 추가 시키기
-            re--;
+        Arrays.fill(answer,num); // for문보다 효율적인가봐...
+        for(int i=0; i<re;i++){
+            answer[i]++; // 나머지를 돌아가면 추가 시키
         }
         Arrays.sort(answer);
         
