@@ -11,7 +11,7 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(new InputStreamReader(System.in));
 		int n = sc.nextInt();// 탭 해야댈 수 
-		int[] cnt = new int[1002];
+		int[] cnt = new int[1001];
 		int[] cur = new int[n];
 		int[] st = new int[n];
 		for(int i=0; i<n;i++) {
