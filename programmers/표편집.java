@@ -1,3 +1,47 @@
+import java.util.*;
+class Solution {
+    public String solution(int n, int k, String[] cmd) {
+        Stack<Integer> no = new Stack<>();
+        int total = n;// 전체 갯수
+        int pos=k;// 현재 위치 
+        
+        for(int i=0; i<cmd.length;i++){
+            char ch = cmd[i].charAt(0);
+            
+            if(ch=='U'){
+                pos-= Integer.valueOf(cmd[i].substring(2));
+                pos = Math.max(0,pos);// 혹시 0 아래 
+            
+            }else if( ch=='D'){
+                pos+= Integer.valueOf(cmd[i].substring(2));
+                pos = Math.min(pos,total-1); // 혹시 최대값이 벗어 날 경우 대비 
+            
+            }else if(ch=='C'){
+                no.push(pos);
+                total --; // 최대 값이 .. 모자라
+                if(pos==total) pos--;
+            }else if(ch=='Z'){
+                int r = no.pop();
+                if(pos>=r) pos++; //밑에 있으면
+                total ++;
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        for(int i =0; i<total;i++){
+            sb.append("O");
+        }
+        while(!no.isEmpty()){
+            //System.out.println(no.pop());
+           sb.insert(no.pop().intValue(),"X");
+        }
+           
+        
+        String answer = sb.toString();
+        return answer;
+    }
+}
+
+// 틀린 부분...  어디가 틀릴까. 일단 느리다 제거 삭제를 계속 해야되서 그렇지만 생각하보면 삭제될것만 알고 있으면된다. 
 public static String solution(int n, int k, String[] cmd) {
     	ArrayList<Integer> list = new ArrayList<>();
         for(int i=0; i<n;i++){
