@@ -1,6 +1,4 @@
 public class Main {
-
-	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(new InputStreamReader(System.in));
 
