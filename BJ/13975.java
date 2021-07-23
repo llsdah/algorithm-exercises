@@ -1,4 +1,3 @@
-package backJun;
 
 import java.io.InputStreamReader;
 import java.util.Arrays;
@@ -12,10 +11,11 @@ public class Main {
 		Scanner sc = new Scanner(new InputStreamReader(System.in));
 
 		int n = sc.nextInt();
-		int[] cnt = new int[n];
+		long[] cnt = new long[n];
+		
 		for(int i=0;i<n;i++) {
 			int num =sc.nextInt();
-			int[] arr = new int[num];
+			long[] arr = new long[num];
 			for(int k=0; k<num;k++) {
 				arr[k] = sc.nextInt();
 			}
@@ -31,34 +31,29 @@ public class Main {
 		
 	}
 
-	private static int check(int n, int[] arr) {
+	private static long check(int n, long[] arr) {
 
-		PriorityQueue<Integer> q = new PriorityQueue<>();
+		PriorityQueue<Long> q = new PriorityQueue<>();
 		//System.out.println("arrr["+Arrays.toString(arr));
 		for(int i =0; i<n;i++) {
 			q.offer(arr[i]);
 		}
 		
-		int sum =0;
+		long sum =0;
 		while(q.size()>1) {
 			if(q.size()==1) {
 				break;
 			}
-			int num1 = q.poll();
-			int num2 = q.poll();
-			q.offer(num1+num2);
+			long num1 = q.poll();
+			long num2 = q.poll();
 			sum+=num1+num2;
+			if(q.isEmpty()) {
+				break;
+			}
+			q.offer(num1+num2);
 		}
 		
-		sum+= q.poll();
 		return sum;
 	}
 }
 
-
-
-/*
-
-
-
-*/
