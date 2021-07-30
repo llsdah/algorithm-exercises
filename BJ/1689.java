@@ -1,13 +1,74 @@
-import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Scanner;
-
+// 우선순위로 바꾸었는데 .. 어디가 .ㅠㅠ
 public class Main {
 
-	// 통나무 자르기 숫자가 크니까 이분탐색으로 빠르게 
-	static long max =0;
-	static long fp =0;
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(new InputStreamReader(System.in));
+		
+		int n = sc.nextInt();// 통나무 길이
+
+		long[][] arr = new long[n][2];
+		
+		for(int i =0;i<n;i++) {
+			long st = sc.nextLong(); // 시작점
+			long end = sc.nextLong(); // 끝 정
+
+			arr[i][0]= st;
+			arr[i][1]= end;
+		}
+		
+		Arrays.sort(arr, new Comparator<long[]>() {
+			@Override
+			public int compare(long[] o1, long[] o2) {
+				if(o1[1]==o2[1]) return o1[0]-o2[0]>0 ? 1 : -1;
+				return o1[1]-o2[1]>0 ? 1 : -1;
+			}
+		});
+		
+		PriorityQueue<Long> q = new PriorityQueue<>(Collections.reverseOrder());
+		q.offer(arr[0][0]);// 시작점
+		
+		long end = arr[0][1];
+		
+		int max = 0;
+		for(int i=1;i<n;i++) {
+			
+			while(!q.isEmpty()&&end<=q.peek()){
+				q.poll();
+			}
+			if( q.isEmpty()|| end<=q.peek()) {
+				end = arr[i][1];
+			}
+			q.offer(arr[i][0]);
+			max = Math.max(max, q.size());
+			
+			
+		}
+		
+		System.out.println(max);
+		
+	}
+	
+}
+
+class Point implements Comparable<Point>{
+	long st;
+	long end;
+	Point(long st, long end){
+		this.st = st;
+		this.end = end;
+	}
+	
+	public int compareTo(Point o) {
+		if( this.end==o.end) return this.st -o.end >0 ? 1:-1;
+		return this.end -o.end >0 ? 1 :-1;
+	}
+	
+}
+
+
+// 틀림
+public class Main {
+
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(new InputStreamReader(System.in));
 		
