@@ -1,10 +1,53 @@
-// 우선순위로 바꾸었는데 .. 어디가 .ㅠㅠ
+// 정답인데 아직 이해 불가 
+
+
 public class Main {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(new InputStreamReader(System.in));
 		
 		int n = sc.nextInt();// 통나무 길이
+
+		long[][] arr = new long[n][2];
+
+		ArrayList<long[]> line = new ArrayList<>();
+		for(int i =0;i<n;i++) {
+			long st = sc.nextLong(); // 시작점
+			long end = sc.nextLong(); // 끝 정
+
+			line.add(new long[] {st,1});
+			line.add(new long[] {end,-1});
+			
+		}
+		
+		line.sort(
+		(o1,o2) -> o1[0] < o2[0] ? -1 :  
+			( o1[0]==o2[0] ? 
+					( o1[1]< o2[1] ? -1 : 
+						(o1[1]==o2[1] ? 0 :1 ) ) : 1 ) );
+		
+		
+		int ans =0; 
+		int cnt =0;
+
+		for(long[] i : line) {
+			cnt +=i[1];
+			System.out.println(Arrays.toString(i));
+			ans = Math.max(ans, cnt);
+		}
+		
+		System.out.println(ans);
+	}
+	
+}
+
+// 우선순위로 바꾸었는데 .. 어디가 .ㅠㅠ
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(new InputStreamReader(System.in));
+		
+		int n = sc.nextInt();
 
 		long[][] arr = new long[n][2];
 		
@@ -50,29 +93,13 @@ public class Main {
 	
 }
 
-class Point implements Comparable<Point>{
-	long st;
-	long end;
-	Point(long st, long end){
-		this.st = st;
-		this.end = end;
-	}
-	
-	public int compareTo(Point o) {
-		if( this.end==o.end) return this.st -o.end >0 ? 1:-1;
-		return this.end -o.end >0 ? 1 :-1;
-	}
-	
-}
-
-
 // 틀림
 public class Main {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(new InputStreamReader(System.in));
 		
-		int n = sc.nextInt();// 통나무 길이
+		int n = sc.nextInt();//  길이
 
 		long[][] arr = new long[n][2];
 		
