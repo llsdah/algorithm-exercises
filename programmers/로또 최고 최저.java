@@ -40,3 +40,40 @@ class Solution {
         return prize;
     }
 }
+
+
+//
+
+
+import java.util.*;
+
+class Solution {
+    public int[] solution(int[] lottos, int[] win_nums) {
+        int[] answer = new int[2];
+        int min=0;
+        int max=0;
+        
+        for(int i=0; i < lottos.length;i++){
+            if(lottos[i]==0) {
+                max++;
+                continue;
+            }
+            
+            if(check(lottos[i],win_nums)){
+                min++;
+                max++;
+            }
+        }
+        answer[0] = max<=1 ? 6 : 7-max;
+        answer[1] = min<=1 ? 6 : 7-min;
+            
+        return answer;
+    }
+    
+    public boolean check(int num, int[] nums){
+        for(int i =0; i<nums.length;i++){
+            if(num==nums[i]) return true;
+        }
+        return false;
+    }
+}
