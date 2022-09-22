@@ -65,3 +65,34 @@ class Solution {
         return answer;
     }
 }
+
+import java.util.*;
+
+// v2 메모리 초과네 .. 흠냐.. 
+class Solution {
+    public int[] solution(int n, long left, long right) {
+        int[] answer = new int[(int)(right-left)+1];
+        int[][] arr = new int[n][n];
+        
+        int idx =0;
+        int cnt =0;
+        
+        for(int i=1;i<=n;i++){
+            for(int k =1;k<=n;k++){
+                if(i>k) arr[i-1][k-1]=i;
+                else arr[i-1][k-1] = k;
+                
+                if(left<=cnt&&right>=cnt ) {
+                    answer[idx]=arr[i-1][k-1];
+                    idx++;
+                }
+                cnt++;
+                
+                if(idx>=answer.length) return answer;
+            }
+        }
+        
+        
+        return answer;
+    }
+}
