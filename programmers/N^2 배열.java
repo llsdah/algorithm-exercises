@@ -1,7 +1,7 @@
 import java.util.*;
 
 
-// 2차원 배열로 반들어야댐. 
+// 2차원 배열로 반들어야댐. V_1
 class Solution {
     public int[] solution(int n, long left, long right) {
         int[] answer = new int[n*n];
@@ -31,5 +31,37 @@ class Solution {
         }
         
         return arr;
+    }
+}
+
+import java.util.*;
+//  2차원 배열 2번 1번에 끝냄v_2
+class Solution {
+    public int[] solution(int n, long left, long right) {
+        int[] answer = new int[(int)(right-left)+1];
+        int[][] arr = new int[n][n];
+        
+        for(int i=1;i<=n;i++){
+            for(int k =1;k<=n;k++){
+                if(i>k) arr[i-1][k-1]=i;
+                else arr[i-1][k-1] = k;
+            }
+        }
+        
+        int idx =0;
+        int cnt =0;
+        for(int i=1;i<=n;i++){
+            for(int k =1;k<=n;k++){
+                
+                if(left<=cnt&&right>=cnt ) {
+                    answer[idx]=arr[i-1][k-1];
+                    idx++;
+                }
+                cnt++;
+            }
+        }
+        
+        
+        return answer;
     }
 }
