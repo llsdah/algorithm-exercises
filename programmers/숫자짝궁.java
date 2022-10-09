@@ -56,3 +56,39 @@ class Solution {
         return que;
     }
 }
+
+
+import java.util.*;
+
+class Solution {
+    public String solution(String X, String Y) {
+        String answer = "";
+        
+        // x에 숫자 든 갯수 
+        int[] check = new int[10];
+        char[] ch = X.toCharArray();
+        for(int i =0; i< ch.length;i++){
+            check[ch[i]-'0']++;
+        }        
+        
+        ch = Y.toCharArray();
+        for(int i =0; i<ch.length;i++){
+            if(check[ch[i]-'0']>0){
+                answer+=ch[i]-'0';
+                check[ch[i]-'0']--;
+            }
+        }
+        if(answer.length()==0) {
+            answer="-1";
+            return answer;
+        }
+        
+        ch = answer.toCharArray();
+        Arrays.sort(ch);
+        answer= new StringBuilder(new String(ch)).reverse().toString();
+        
+        if (answer.charAt(0)=='0') answer="0";
+        return answer;
+    }
+    
+}
