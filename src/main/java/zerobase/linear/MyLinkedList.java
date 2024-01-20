@@ -120,10 +120,10 @@ public class MyLinkedList {
 
     }
 
-    public void findData(int data){
+    public boolean findData(int data){
         if(this.isEmpty()){
             System.out.println("empty");
-            return;
+            return false;
         }
 
         Node cur = this.head;
@@ -131,11 +131,12 @@ public class MyLinkedList {
         while(cur.next != null){
             if( cur.data == data ){
                 System.out.println("find");
-                return;
+                return true;
             }
             cur = cur.next;
         }
         System.out.println("not find");
+        return false;
     }
 
 
