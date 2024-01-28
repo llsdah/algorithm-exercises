@@ -1,10 +1,10 @@
-package zerobase.linear;
+package zerobase.linear.stringLinear;
 
 class Node{
-    int data;
+    String data;
     Node next;
     Node(){}
-    Node(int data, Node next){
+    Node(String data, Node next){
         this.data = data;
         this.next = next;
     }
@@ -12,12 +12,13 @@ class Node{
 
 class MyLinkedList2 extends MyLinkedList{
 
-    MyLinkedList2(Node node){
+    MyLinkedList2(Node node, Character ch){
         this.head = node;
+        this.ch = ch;
     }
 
     // 연결리스트에 데이터 추가 , before 데이터 기준으로 뒤 생성(단 없다면 맨앞)
-    public void addData(int data, Integer before){
+    public void addData(String data, String before){
         if(this.head == null){
             this.head = new Node(data, null);
         } else if( before == null){
@@ -31,7 +32,7 @@ class MyLinkedList2 extends MyLinkedList{
             Node pre = cur;
             while(cur != null){
 
-                if(cur.data == before){
+                if(cur.data.equals(before)){
 
                     if(cur == this.head){
                         this.head = new Node(data, this.head);
@@ -48,7 +49,7 @@ class MyLinkedList2 extends MyLinkedList{
         }
     }
 
-    public void removeData(int data){
+    public void removeData(String data){
         if(this.isEmpty()){
             System.out.println("empty");
             return;
@@ -58,7 +59,7 @@ class MyLinkedList2 extends MyLinkedList{
         Node pre = cur; // 이전 노드
 
         while (cur != null){
-            if(cur.data == data){
+            if(cur.data.equals(data)){
                 if(cur == this.head){
                     this.head = cur.next;
                 }else {
@@ -74,18 +75,20 @@ class MyLinkedList2 extends MyLinkedList{
 }
 
 public class MyLinkedList {
-    Node head; // 가장 앞
+    public Node head; // 가장 앞
+    public Character ch;
 
     MyLinkedList(){};
-    MyLinkedList(Node node){
+    public MyLinkedList(Node node, Character ch){
         this.head = node;
+        this.ch = ch;
     }
     public boolean isEmpty(){
         if(this.head == null) return true;
         return false;
     }
 
-    public void addData(int data){
+    public void addData(String data){
         System.out.println("add data : "+data);
         if(this.head == null){
             this.head = new Node(data,null);
@@ -99,7 +102,7 @@ public class MyLinkedList {
     }
 
     // 연결리스트에 데이터 추가 , before 데이터 기준으로 뒤 생성(단 없다면 맨앞)
-    public void addData(int data, Integer before){
+    public void addData(String data, String before){
         if(this.head == null){
             this.head = new Node(data, null);
         } else if( before == null){
@@ -113,7 +116,7 @@ public class MyLinkedList {
             Node pre = cur;
             while(cur != null){
 
-                if(cur.data == before){
+                if(cur.data.equals(before)){
 
                     if(cur == this.head){
                         this.head = new Node(data, this.head);
@@ -153,7 +156,7 @@ public class MyLinkedList {
 
     }
 
-    public void removeData(int data){
+    public void removeData(String data){
         if(this.isEmpty()){
             System.out.println("empty");
             return;
@@ -163,7 +166,7 @@ public class MyLinkedList {
         Node pre = cur; // 이전 노드
 
         while (cur != null){
-            if(cur.data == data){
+            if(cur.data.equals(data)){
                 if(cur == this.head){
                     this.head = cur.next;
                 }else {
@@ -176,7 +179,7 @@ public class MyLinkedList {
         }
 
     }
-    public boolean findData(int data){
+    public boolean findData(String data){
         if(this.isEmpty()){
             System.out.println("empty");
             return false;
@@ -185,7 +188,7 @@ public class MyLinkedList {
         Node cur = this.head;
 
         while(cur.next != null){
-            if( cur.data == data ){
+            if( cur.data.equals(data) ){
                 System.out.println("find");
                 return true;
             }

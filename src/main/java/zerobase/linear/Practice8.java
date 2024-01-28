@@ -40,6 +40,6 @@ public class Practice8 {
     }
 
     public static boolean findData(){
-
+        return true;
     }
 }
