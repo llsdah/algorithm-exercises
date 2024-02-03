@@ -19,6 +19,8 @@ public class TestCode {
         boolean result = check(checkDist, array, t);
         System.out.println("Result: " + result);
 
+        System.out.println("0%3: " + 1%3);
+
         for(int i =7;i>0;i--){
             System.out.println("i"+i+"bool:"+check(i,array,1));
         }
