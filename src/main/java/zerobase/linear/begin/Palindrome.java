@@ -1,4 +1,4 @@
-package zerobase.linear;
+package zerobase.linear.begin;
 
 // 추가 자료 구조 없이 연결 리스트 만으로 풀어보기
 // 앞으로 뒤로 읽어도 같은것

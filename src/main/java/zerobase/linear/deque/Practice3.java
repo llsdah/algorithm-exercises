@@ -5,7 +5,11 @@ package zerobase.linear.deque;
  * 중간에 데이터를 추가하는 유형입니다.
  * MyDeque2 에 있는 내용으로 대체 합니다.
  */
-public class Practice3 {
+public class Practice3 extends MyDeque2{
+    Practice3(int size) {
+        super(size);
+    }
+
     //**
     public void addMiddle(int data){
         if(this.isFull()){

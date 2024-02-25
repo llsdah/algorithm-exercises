@@ -1,4 +1,4 @@
-package zerobase.linear;
+package zerobase.linear.begin;
 
 /**
  * 2차원 배열을 시계방향의 90 회전

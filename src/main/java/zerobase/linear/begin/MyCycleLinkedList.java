@@ -1,4 +1,4 @@
-package zerobase.linear;
+package zerobase.linear.begin;
 
 
 public class MyCycleLinkedList {

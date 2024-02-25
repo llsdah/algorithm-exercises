@@ -1,4 +1,4 @@
-package zerobase.linear;
+package zerobase.linear.begin;
 
 /**
  * 중복값 제거한 새 배열을 만드세요

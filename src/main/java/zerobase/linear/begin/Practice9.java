@@ -1,4 +1,4 @@
-package zerobase.linear;
+package zerobase.linear.begin;
 
 /**
  * 연경 뒤집기 문제

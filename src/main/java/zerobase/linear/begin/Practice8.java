@@ -1,6 +1,4 @@
-package zerobase.linear;
-
-import sun.awt.image.ImageWatched;
+package zerobase.linear.begin;
 
 import java.util.LinkedList;
 
