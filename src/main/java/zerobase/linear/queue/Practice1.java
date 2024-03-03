@@ -1,7 +1,5 @@
 package zerobase.linear.queue;
 
-import javafx.scene.SubScene;
-
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.stream.IntStream;
