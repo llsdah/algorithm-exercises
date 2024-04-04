@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.Queue;
 
 /**
+ * linear_ds_14_2
  * 순서대로 먼저 요청 먼저 수행
  * Queue -> FIFO에 따라 인쇄
  * 인쇄하기
