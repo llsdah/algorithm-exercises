@@ -8,7 +8,6 @@ public class 이웃한칸 {
         int[] dh = {0,1,-1,0};
         int[] dw = {1,0,0,-1};
 
-
         for(int i =0;i < 4;i++){
             int h_check = h+dh[i];
             int w_check = w+dw[i];
@@ -20,12 +19,12 @@ public class 이웃한칸 {
             }
 
         }
+
         for(int r = 0; r<n;r++){
             for(int c =0; c<n;c++){
 
             }
         }
-
 
         return answer;
     }
